@@ -16,7 +16,6 @@ export default function Home() {
         const data = doc.data();
         tempList.push(data);
       });
-      console.log(tempList);
       setList(tempList);
     });
   }, []);
