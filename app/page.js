@@ -37,6 +37,7 @@ const next_day = (date) => {
 const admin_names = [
   { admin: "기획재정부", eng: "moef" },
   { admin: "금융위원회", eng: "fsc" },
+  { admin: "산업자원부", eng: "motie" },
 ];
 
 export default function Home() {
