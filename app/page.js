@@ -39,6 +39,7 @@ const admin_names = [
   { admin: "금융위원회", eng: "fsc" },
   { admin: "산업자원부", eng: "motie" },
   { admin: "환경부", eng: "me" },
+  { admin: "고용노동부", eng: "moel" },
 ];
 
 export default function Home() {
