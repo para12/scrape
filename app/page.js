@@ -40,6 +40,8 @@ const admin_names = [
   { admin: "산업자원부", eng: "motie" },
   { admin: "환경부", eng: "me" },
   { admin: "고용노동부", eng: "moel" },
+  { admin: "보건복지부", eng: "mohw" },
+  { admin: "국토교통부", eng: "molit" },
 ];
 
 export default function Home() {
@@ -84,7 +86,9 @@ export default function Home() {
                               }}
                               key={e.title}
                             >
-                              <a href={e.href}>{e.title}</a>
+                              <a href={e.href} target={"_blank"}>
+                                {e.title}
+                              </a>
                               <span>{e.depart}</span>
                             </div>
                           ))}
