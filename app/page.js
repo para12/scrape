@@ -64,12 +64,16 @@ export default function Home() {
   }, [date]);
   return (
     <main className={styles.main}>
-      <div>
+      <div
+        style={{
+          marginBottom: "30px",
+        }}
+      >
         {formatting(today) !== date && (
-          <span onClick={(e) => setDate(next_day(date))}> {`<-`} </span>
+          <span onClick={() => setDate(next_day(date))}> {`<-`} </span>
         )}
         {date}
-        <span onClick={(e) => setDate(previous_day(date))}> {`->`} </span>
+        <span onClick={() => setDate(previous_day(date))}> {`->`} </span>
       </div>
       <div>
         {
@@ -84,6 +88,7 @@ export default function Home() {
                         <p
                           style={{
                             fontWeight: "800",
+                            marginBottom: "10px",
                           }}
                         >
                           {ad.admin}
@@ -98,6 +103,7 @@ export default function Home() {
                               key={e.title}
                             >
                               <a href={e.href} target={"_blank"}>
+                                {"\u2022 "}
                                 {e.title}
                               </a>
                               {/* <span>{e.depart}</span> */}
