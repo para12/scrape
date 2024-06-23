@@ -22,14 +22,17 @@ const formatting = (date) => {
   return formatted_date;
 };
 
+const iosFormatting = (date) =>
+  date.replaceAll(".", "-").slice(0, 10) + " 00:00:00";
+
 const previous_day = (date) => {
-  let day = new Date(date);
+  let day = new Date(iosFormatting(date));
   day.setDate(day.getDate() - 1);
   return formatting(day);
 };
 
 const next_day = (date) => {
-  let day = new Date(date);
+  let day = new Date(iosFormatting(date));
   day.setDate(day.getDate() + 1);
   return formatting(day);
 };
@@ -62,9 +65,11 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div>
-        <span onClick={(e) => setDate(next_day(date))}> next </span>
+        {formatting(today) !== date && (
+          <span onClick={(e) => setDate(next_day(date))}> {`<-`} </span>
+        )}
         {date}
-        <span onClick={(e) => setDate(previous_day(date))}> previous </span>
+        <span onClick={(e) => setDate(previous_day(date))}> {`->`} </span>
       </div>
       <div>
         {
@@ -76,8 +81,14 @@ export default function Home() {
                   <div key={ad.eng}>
                     {filtered_list.length > 0 && (
                       <div>
-                        <div>{ad.admin}</div>
-                        <>
+                        <p
+                          style={{
+                            fontWeight: "800",
+                          }}
+                        >
+                          {ad.admin}
+                        </p>
+                        <div>
                           {filtered_list.map((e) => (
                             <div
                               style={{
@@ -89,10 +100,10 @@ export default function Home() {
                               <a href={e.href} target={"_blank"}>
                                 {e.title}
                               </a>
-                              <span>{e.depart}</span>
+                              {/* <span>{e.depart}</span> */}
                             </div>
                           ))}
-                        </>
+                        </div>
                         <br />
                       </div>
                     )}
