@@ -45,6 +45,7 @@ const admin_names = [
   { admin: "고용노동부", eng: "moel" },
   { admin: "보건복지부", eng: "mohw" },
   { admin: "국토교통부", eng: "molit" },
+  { admin: "개인정보보호위원회", eng: "pipc" },
 ];
 
 export default function Home() {
