@@ -47,6 +47,7 @@ const admin_names = [
   { admin: "국토교통부", eng: "molit" },
   { admin: "개인정보보호위원회", eng: "pipc" },
   { admin: "해양수산부", eng: "mof" },
+  { admin: "농축산식품부", eng: "mafra" },
 ];
 
 export default function Home() {
