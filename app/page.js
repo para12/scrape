@@ -48,6 +48,7 @@ const admin_names = [
   { admin: "개인정보보호위원회", eng: "pipc" },
   { admin: "해양수산부", eng: "mof" },
   { admin: "농축산식품부", eng: "mafra" },
+  { admin: "중소벤처기업부", eng: "mss" },
 ];
 
 export default function Home() {
