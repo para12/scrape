@@ -49,6 +49,7 @@ const admin_names = [
   { admin: "해양수산부", eng: "mof" },
   { admin: "농축산식품부", eng: "mafra" },
   { admin: "중소벤처기업부", eng: "mss" },
+  { admin: "행정안전부", eng: "msit" },
 ];
 
 export default function Home() {
@@ -61,11 +62,25 @@ export default function Home() {
       let tempList = [];
       results.forEach((doc) => {
         const data = doc.data();
+        // if (data.admin == "mafra") {
+        //   console.log(data);
+        // }
         tempList.push(data);
       });
+      // console.log(
+      //   "tempList",
+      //   tempList.filter((a) => a.admin == "mafra")
+      // );
       setList(tempList);
     });
-  }, [date]);
+  }, [date, setDate]);
+  // console.log("date", date);
+  // if (list) {
+  //   console.log(
+  //     "list",
+  //     list.filter((a) => a.admin == "mafra")
+  //   );
+  // }
   return (
     <main className={styles.main}>
       <div
@@ -98,21 +113,24 @@ export default function Home() {
                           {ad.admin}
                         </p>
                         <div>
-                          {filtered_list.map((e) => (
-                            <div
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                              }}
-                              key={e.title}
-                            >
-                              <a href={e.href} target={"_blank"}>
-                                {"\u2022 "}
-                                {e.title}
-                              </a>
-                              {/* <span>{e.depart}</span> */}
-                            </div>
-                          ))}
+                          {filtered_list.map((e) => {
+                            console.log(e.title);
+                            return (
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                }}
+                                key={e.title}
+                              >
+                                <a href={e.href} target={"_blank"}>
+                                  {"\u2022 "}
+                                  {e.title}
+                                </a>
+                                {/* <span>{e.depart}</span> */}
+                              </div>
+                            );
+                          })}
                         </div>
                         <br />
                       </div>
