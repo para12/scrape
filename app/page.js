@@ -50,6 +50,7 @@ const admin_names = [
   { admin: "농축산식품부", eng: "mafra" },
   { admin: "중소벤처기업부", eng: "mss" },
   { admin: "행정안전부", eng: "mois" },
+  { admin: "국회회의록", eng: "assembly" },
 ];
 
 export default function Home() {
