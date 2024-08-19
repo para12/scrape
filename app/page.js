@@ -1,7 +1,14 @@
 "use client";
 import styles from "./page.module.css";
 
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import fireStore from "../firebase/firestore";
 
 import { useEffect, useState } from "react";
@@ -50,12 +57,12 @@ const admin_names = [
   { admin: "농축산식품부", eng: "mafra" },
   { admin: "중소벤처기업부", eng: "mss" },
   { admin: "행정안전부", eng: "mois" },
-  { admin: "국회회의록", eng: "assembly" },
 ];
 
 export default function Home() {
   const [list, setList] = useState();
   const [date, setDate] = useState(formatting(today));
+  const [assembly, setAssembly] = useState([]);
   useEffect(() => {
     getDocs(
       query(collection(fireStore, "press_release"), where("date", "==", date))
@@ -63,9 +70,6 @@ export default function Home() {
       let tempList = [];
       results.forEach((doc) => {
         const data = doc.data();
-        // if (data.admin == "mafra") {
-        //   console.log(data);
-        // }
         tempList.push(data);
       });
       // console.log(
@@ -75,13 +79,14 @@ export default function Home() {
       setList(tempList);
     });
   }, [date, setDate]);
-  // console.log("date", date);
-  // if (list) {
-  //   console.log(
-  //     "list",
-  //     list.filter((a) => a.admin == "mafra")
-  //   );
-  // }
+
+  useEffect(() => {
+    getDoc(query(doc(fireStore, "assembly_record", "dates"))).then(
+      (results) => {
+        setAssembly(results.data()["updated_dates"]);
+      }
+    );
+  }, [date, setDate]);
   return (
     <main className={styles.main}>
       <div
@@ -154,6 +159,14 @@ export default function Home() {
           //   );
           // })
         }
+      </div>
+      <div>
+        {assembly.filter((u) => u == date).length > 0 && (
+          <a href={"https://likms.assembly.go.kr/record/mhs-30-011.do"}>
+            {" "}
+            국회회의록 new{" "}
+          </a>
+        )}
       </div>
     </main>
   );
